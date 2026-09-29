@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>SVG 简笔画动画</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="demo">
+      <section class="scene-shell" aria-label="简笔画动画演示">
+        <svg id="sketch" viewBox="0 0 1200 500" role="img" aria-labelledby="scene-title scene-desc">
+          <title id="scene-title">清晨散步的简笔画</title>
+          <desc id="scene-desc">线条依次画出道路、云和树，一个小角色沿道路散步。轻点画面会挥手。</desc>
+
+          <g class="line-art" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path class="js-draw" d="M54 395 Q280 386 520 394 T1146 393" />
+            <path class="js-draw" d="M130 392 Q145 318 166 250 Q190 319 205 392 M126 315 Q165 330 207 306" />
+            <path class="js-draw detail" d="M89 207 Q113 178 143 202 Q166 161 211 191 Q244 178 263 210" />
+            <path class="js-draw" d="M887 393 Q900 314 934 260 Q967 320 982 393 M897 332 Q937 344 972 315" />
+            <path class="js-draw detail" d="M864 221 Q895 189 930 217 Q951 173 996 204 Q1027 191 1050 223" />
+          </g>
+
+          <g id="actor" aria-hidden="true">
+            <ellipse cx="0" cy="6" rx="21" ry="4" fill="currentColor" opacity=".12" />
+            <g id="actor-body" fill="#fff" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <circle cy="-33" r="20" />
+              <path class="subject-accent" d="M-13-16 Q0-5 13-16 L17 17 Q0 27-17 17Z" />
+              <path id="leg-back" fill="none" d="M-7 17 L-11 35 L-22 35" />
+              <path id="leg-front" fill="none" d="M7 17 L12 35 L23 35" />
+              <path id="arm-back" fill="none" d="M-12-8 L-25 8" />
+              <path id="arm-front" fill="none" d="M12-8 L25 8" />
+              <path fill="none" d="M-7-36h1m12 0h1M-5-27q5 4 10 0" />
+            </g>
+          </g>
+
+          <g id="pen" fill="#fff" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M0 0 14-25 20-21 5 3Z M14-25l6 4M0 0l-2 7 7-4" />
+          </g>
+
+          <rect id="hit-area" x="0" y="0" width="1200" height="500" fill="transparent" role="button" tabindex="0" aria-label="让小角色挥手" />
+        </svg>
+      </section>
+
+      <div class="controls" aria-label="动画控制">
+        <span>轻点画面，让小角色挥手</span>
+        <button id="replay" type="button">再画一次</button>
+        <button id="pause" type="button" aria-pressed="false">暂停</button>
+      </div>
+    </main>
+    <script src="./animation.js"></script>
+  </body>
+</html>

@@ -1,0 +1,82 @@
+:root {
+  --sketch-paper: #fbfaf6;
+  --sketch-ink: #141414;
+  --sketch-accent: #e5ad3d;
+  color: var(--sketch-ink);
+  background: var(--sketch-paper);
+  font-family: Arial, "Microsoft YaHei", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-width: 320px; min-height: 100%; }
+button { font: inherit; }
+
+.demo {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+}
+
+.scene-shell {
+  position: relative;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+#sketch {
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(1200px, 100vw);
+  min-width: 760px;
+  height: auto;
+  transform: translateX(-50%);
+  outline: none;
+  cursor: pointer;
+}
+
+#sketch:has(#hit-area:focus-visible) {
+  outline: 2px solid currentColor;
+  outline-offset: -8px;
+}
+
+.detail { stroke-width: 2; }
+.subject-accent { fill: var(--sketch-accent); }
+
+.controls {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  padding: 16px clamp(20px, 5vw, 72px);
+  color: #6f6c64;
+  font-size: 13px;
+}
+
+.controls button {
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  padding: 7px 1px;
+  color: #141414;
+  background: transparent;
+  cursor: pointer;
+}
+
+.controls button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .scene-shell { min-height: 360px; }
+  #sketch { width: 760px; }
+  .controls { justify-content: space-between; gap: 14px; font-size: 11px; }
+  .controls span { max-width: 126px; line-height: 1.45; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #pen { display: none; }
+}

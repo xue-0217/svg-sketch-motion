@@ -1,0 +1,4 @@
+interface:
+  display_name: "SVG 简笔画动画"
+  short_description: "制作主体局部上色、动作自然且可交互的 SVG 简笔画动画"
+  default_prompt: "Use $svg-sketch-motion to create a responsive hand-drawn SVG scene with selective subject color and meaningful interaction."
