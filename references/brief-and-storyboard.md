@@ -10,8 +10,8 @@ Build a compact internal brief from the user's words, reference, and target proj
 |---|---|---|
 | Subject | cat at a desk, train crossing hills, hand writing a logo | the user's named subject |
 | Environment | full scene, isolated object, website hero | a single uncluttered scene |
-| Primary action | walk, draw, wave, transform, orbit | a gentle loop after the scene draws in |
-| Playback | autoplay once, loop, scroll-triggered, click-triggered | autoplay with replay; loop only the living detail |
+| Primary action | walk, draw, wave, transform, orbit | progressive hand-drawing, restrained color reveal, then a natural living loop |
+| Playback | autoplay once, loop, scroll-triggered, click-triggered | autoplay drawing once, loop the living detail; replay redraws from the first stroke |
 | Visual style | black ink, colored fills, marker, technical sketch | dark rounded line on a light background with one accent color |
 | Accent region | train cab, scarf, flower head, active button | one identifying part of the main subject, about 20%–40% of its area |
 | Motion logic | wheels turn, tail swings, steam rises | behavior natural to the named subject |
@@ -21,7 +21,7 @@ Build a compact internal brief from the user's words, reference, and target proj
 
 Ask a question only when multiple reasonable answers would produce materially different deliverables. A reference image usually resolves style and composition; a reference video also resolves timing and action.
 
-## State the direction before coding
+## State the direction before visual drafting
 
 Show a compact direction in this form:
 
@@ -32,7 +32,7 @@ Show a compact direction in this form:
 交互 + 交付：点击烟囱冒出红色爱心；独立响应式网页
 ```
 
-Use concrete content rather than these exact labels when natural. If the user explicitly asked to discuss or confirm before implementation, stop here. Otherwise continue using the direction as a visible working assumption.
+Use concrete content rather than these exact labels when natural. If the user explicitly asked to discuss the brief first, stop here. Otherwise continue to the static visual selection in [reference-first-design.md](reference-first-design.md), not directly to production SVG paths. A verbal brief does not select a newly proposed character design; a user-selected reference or explicit delegation of visual selection does.
 
 ## Convert the idea into layers
 

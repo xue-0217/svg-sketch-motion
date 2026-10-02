@@ -48,6 +48,8 @@ Place pivot points near the local origin of the part they rotate. Nest groups wh
 
 ## Sequential line drawing
 
+This is the default opening stage, including when the character was first designed as a static reference. Maintain a distinct drawing clock followed by a living-motion clock. Freeze moving parts in the approved pose while their contours are drawn; reveal fills and accents deliberately so they do not expose a complete silhouette before the strokes. Replay resets both clocks, every stroke offset, fill opacity, cursor, and interaction state. Static design review and reduced motion render all stages complete immediately.
+
 Measure once after SVG geometry exists:
 
 ```js

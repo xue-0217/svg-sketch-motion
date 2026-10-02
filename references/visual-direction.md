@@ -6,6 +6,8 @@ Read this guide when choosing color, movement, interaction, scene density, respo
 
 The default visual language is dark hand-drawn line art on a white or quiet neutral background, with one accent color focused on the main subject.
 
+Settle the visual target through [reference-first-design.md](reference-first-design.md) before drawing new artwork. An explicitly requested black-and-white scene or selected monochrome reference stays monochrome; the accent rules below are defaults, not overrides of the user's chosen image.
+
 Choose the accent region by recognition value, not by convenience:
 
 - vehicle: cab, boiler, body panel, stripe, or light;
@@ -104,4 +106,3 @@ Choose between full-scene scaling and intentional center cropping based on which
 - **Hero/section:** integrate with surrounding content and keep the animation subordinate to page hierarchy.
 - **Transparent embed:** transparent root, no page chrome, bounded viewBox, optional autoplay.
 - **Automatic loop:** omit controls only when the loop is unobtrusive and the host page provides an accessible motion policy.
-

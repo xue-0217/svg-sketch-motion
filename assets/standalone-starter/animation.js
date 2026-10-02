@@ -53,16 +53,17 @@
       pen.style.opacity = '0';
     }
 
-    const travel = (state.elapsed * 0.075) % 2;
+    const motionElapsed = instant ? 0 : Math.max(0, state.elapsed - 5.2);
+    const travel = (motionElapsed * 0.075) % 2;
     const forward = travel <= 1;
     const walkProgress = instant ? 0.5 : forward ? travel : 2 - travel;
     const facing = instant || forward ? 1 : -1;
     const actorX = 320 + walkProgress * 560;
-    const phase = state.elapsed * 9;
+    const phase = motionElapsed * 9;
     const step = instant ? 0 : Math.sin(phase);
     const bob = instant ? 0 : Math.abs(step) * 3;
     const waveTime = state.elapsed - state.waveAt;
-    const waving = !instant && waveTime > 0 && waveTime < 1.15;
+    const waving = !instant && state.elapsed >= 5.2 && waveTime > 0 && waveTime < 1.15;
     const waveAngle = waving ? -95 + Math.sin(waveTime * 18) * 18 : 0;
 
     actor.setAttribute('transform', `translate(${actorX} ${386 - bob}) scale(${facing} 1)`);
@@ -99,7 +100,7 @@
   }
 
   function wave() {
-    if (!state.paused && state.elapsed - state.waveAt > 1.25) state.waveAt = state.elapsed;
+    if (!state.paused && (reducedMotion.matches || state.elapsed >= 5.2) && state.elapsed - state.waveAt > 1.25) state.waveAt = state.elapsed;
   }
 
   function replay() {
@@ -108,7 +109,7 @@
     state.paused = false;
     pauseButton.textContent = '暂停';
     pauseButton.setAttribute('aria-pressed', 'false');
-    paint();
+    paint(reducedMotion.matches);
     schedule();
   }
 

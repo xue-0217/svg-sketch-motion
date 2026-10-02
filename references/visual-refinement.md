@@ -2,6 +2,8 @@
 
 Use this guide after a functional first implementation exists. The goal is not to decorate the scene indiscriminately; it is to make the subject more recognizable, the environment more supportive, and the complete animation feel deliberately illustrated rather than assembled from generic primitives.
 
+Keep the selected static reference available during review. This pass refines its SVG execution; it does not replace the prior visual selection and still-SVG comparison in [reference-first-design.md](reference-first-design.md). If basic silhouette, proportions, or expression drifted from that reference, restore them first. A material change of illustration direction returns to static visual selection.
+
 ## Inspect before editing
 
 Open the actual page. Inspect the same representative states that will be checked again after refinement:
@@ -43,7 +45,7 @@ The subject receives the first and deepest pass because it carries the story, ac
 
 ### Accent and interaction
 
-- Keep the accent on one identifying region, usually about 20%–40% of the visible subject.
+- Preserve the selected palette. When an accent is part of it, keep the accent on one identifying region, usually about 20%–40% of the visible subject; keep explicitly monochrome artwork monochrome.
 - Ensure the accent shape follows the subject's construction instead of appearing pasted on top.
 - Keep sufficient ink contrast across the accent fill.
 - Confirm the interactive part is visually understandable, remains attached during motion, and has a generous invisible hit target.

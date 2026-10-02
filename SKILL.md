@@ -1,11 +1,13 @@
 ---
 name: svg-sketch-motion
-description: Create or refine responsive hand-drawn web animations with inline SVG artwork, selective accent color on the main subject, subject-specific JavaScript motion, semantic interactions, requestAnimationFrame timing, CSS layout, and a post-render visual refinement pass. Use for 简笔画动画, 线稿动效, 手绘 SVG, path drawing, animated doodles, interactive SVG scenes, or converting a visual reference into a lightweight web animation; do not use for prerecorded video, GIF-only output, Canvas/WebGL scenes, or ordinary static icons unless the user asks to animate them this way.
+description: Create or refine hand-drawn web animations through static reference selection, faithful SVG recreation, progressive stroke drawing, selective color reveal, subject-specific JavaScript motion, and visual refinement. Use for 简笔画动画, 线稿动效, 手绘 SVG, animated doodles, interactive SVG scenes, or turning a reference into a lightweight web animation; not for prerecorded video, GIF-only output, or Canvas/WebGL scenes.
 ---
 
 # SVG Sketch Motion
 
-Build a real, inspectable web animation rather than a prerecorded imitation. SVG owns the drawing, JavaScript owns state and motion, one `requestAnimationFrame` loop owns continuous refresh, and CSS owns layout plus non-essential presentation. The result should read first as a hand-drawn scene, with color and motion guiding attention to the main subject.
+Design the still image first, recreate it in SVG, then animate it. SVG owns the drawing, JavaScript owns state and motion, one `requestAnimationFrame` loop owns continuous refresh, and CSS owns layout plus non-essential presentation. The result should read first as a hand-drawn scene, with color and motion guiding attention to the main subject.
+
+The default animation includes the visible act of drawing: strokes appear progressively, selective color follows, and the completed scene enters its living loop. A hand-drawn illustration that simply moves is not a substitute for this drawing process. Replay must restart from the first stroke, including all reveal and fill states. Omit the drawing stage only when the user explicitly requests it; static design review and reduced-motion mode still show the complete artwork.
 
 ## Choose the delivery mode
 
@@ -27,15 +29,28 @@ Infer ordinary details and ask only about a missing choice that would materially
 - visual language: line weight, fill, palette, density, and mood;
 - the subject's identifying accent region and natural motion;
 - an interaction whose cause and response are meaningfully related;
+- a visible stroke order, color-reveal stage, and replay that repeats the drawing;
 - destination: standalone page, section, component, or transparent/embed-ready scene.
 
-Before coding, state a compact four-line direction: **subject + accent**, **environment**, **motion**, and **interaction + delivery**. For a complex scene, add its layers and 3–7 animation beats. If the user asked to discuss or confirm first, pause after this direction; otherwise treat it as a visible working assumption and continue. Preserve exact user-specified objects, colors, timing, interactions, and scope.
+Before making the visual draft, state a compact four-line direction: **subject + accent**, **environment**, **motion**, and **interaction + delivery**. For a complex scene, add its layers and 3–7 animation beats. This direction is not approval of a character design: follow the visual selection stage below before implementing new artwork. Preserve exact user-specified objects, colors, timing, interactions, and scope.
+
+## Select the static visual reference
+
+Read [references/reference-first-design.md](references/reference-first-design.md) for new subjects, new illustration directions, or a redesign of an unsatisfactory subject.
+
+1. Inspect any user-supplied reference. If the user has selected it for implementation, use it as the visual target without asking them to select it again.
+2. Without a selected reference, create and show actual static concept images before writing production SVG paths. When the direction is open, usually offer 2–3 visibly different designs; when it is already precise, one focused draft is sufficient. Prioritize the subject's silhouette, proportions, expression, accent placement, and relationship to its key prop or environment.
+3. Let the user select or revise the visual draft before SVG implementation. General permission to make an animation does not by itself select one of the newly proposed designs. If the user explicitly delegates selection and asks to continue, choose a draft, show it, state the choice, and proceed.
+4. Record the selected image path and defining visual features in the output project. Recreate a still SVG and compare it with that target before adding motion. Preserve silhouette, negative space, facial placement, part connections, and composition instead of improvising a new character from primitives.
+
+An existing approved design can be reused for behavior-only changes. Do not insert a new concept-selection step unless the requested work changes its appearance. If visual generation is unavailable, explain the limitation and ask for a reference or agreement on a renderable static alternative; do not silently skip this stage.
 
 ## Direct color, motion, and interaction
 
 Read [references/visual-direction.md](references/visual-direction.md) whenever choosing the palette, motion language, interaction, density, or responsive composition.
 
 - Default to dark line art on a white or neutral background.
+- An explicit monochrome request or selected monochrome reference overrides the default accent; do not add color unless requested.
 - Apply one accent color to a representative part of the main subject, usually about 20%–40% of its visible area. Do not automatically color the whole subject or the environment.
 - Reuse the accent for a related response when appropriate, such as a red train producing red hearts.
 - Give the main subject the clearest motion, supporting details quieter secondary motion, and the background little or no continuous motion.
@@ -46,7 +61,7 @@ Read [references/visual-direction.md](references/visual-direction.md) whenever c
 
 Read [references/animation-architecture.md](references/animation-architecture.md) before implementation or substantial editing.
 
-1. Establish one stable `viewBox` coordinate system and sketch the composition there.
+1. Establish one stable `viewBox` coordinate system and map the selected reference into it. Complete and visually compare the still artwork before adding the frame loop; read the static SVG checkpoint in [references/reference-first-design.md](references/reference-first-design.md).
 2. Group SVG by responsibility: neutral environment, draw-on paths, selectively colored subject parts, moving actors, secondary effects, cursor/pen, and hit targets.
 3. Define line, paper, and accent colors as reusable tokens rather than scattering hex values.
 4. Give JavaScript stable selectors or refs. Prefer classes for groups and IDs/refs for unique actors.
@@ -65,7 +80,7 @@ Read [references/visual-refinement.md](references/visual-refinement.md) after th
 Open the actual page and inspect the completed composition, active loop, interaction peak, and a narrow viewport. Then refine in this order:
 
 1. **Whole-scene diagnosis:** identify at most three issues that most weaken recognition, hierarchy, balance, or polish.
-2. **Subject pass:** improve silhouette and proportions first, then curves, joints, stroke hierarchy, accent placement, and motion pivots. Simplify or enlarge the subject before adding decorative detail.
+2. **Subject pass:** compare against the selected reference; improve silhouette and proportions first, then curves, joints, stroke hierarchy, accent placement, and motion pivots. Preserve the selected identity and simplify delivery-size detail before adding decoration.
 3. **Background pass:** make the environment support the subject through quieter strokes, clearer depth, cleaner spacing, and fewer tangencies or collisions. Remove distracting detail before adding more scenery.
 4. **Motion integration:** confirm primary, secondary, and background motion match the refined visual hierarchy and do not compete.
 5. **Comparison:** revisit the same desktop and narrow states and confirm the changes are visibly better without breaking behavior.
@@ -90,4 +105,4 @@ Read and follow [references/qa-checklist.md](references/qa-checklist.md) after v
 
 Run the project checks, open the actual page, observe both the start and completed/looping state, exercise every interaction, inspect the console, and check at least one desktop and one narrow mobile viewport. A successful build alone is not proof that the animation works.
 
-Report the output location, what the animation does, the controls/interactions, and what was actually verified. Distinguish a local preview from a published page.
+Report the output location, selected reference, what the animation does, the controls/interactions, and what was actually verified, including still-SVG comparison and subject/background/motion refinement. Distinguish a local preview from a published page.

@@ -1,9 +1,21 @@
 # QA checklist
 
+## Visual target and static SVG
+
+- A new or redesigned subject has an actual static visual reference, shown before production SVG implementation.
+- The reference is user-selected, previously approved for reuse, or chosen under explicit delegation; any exception is recorded accurately.
+- Selected image paths and defining features are recorded in the output project rather than the reusable skill assets.
+- The still SVG was rendered and compared with the selected image before continuous motion was added.
+- Silhouette, proportions, expression, accent regions, overlaps, and composition preserve the selected identity at delivery size.
+- Any material simplification that changes the selected appearance was shown and resolved before animation.
+
 ## Functional
 
 - The first frame is intentional and not accidentally blank.
 - Draw-on paths appear in the intended order and finish cleanly.
+- Unless explicitly omitted by the user, initial playback and replay visibly redraw the scene stroke by stroke; resetting only breathing or other living motion fails this requirement.
+- Subject fills and accents do not expose the whole completed silhouette before its drawing stage; color reveal follows the intended strokes.
+- Replay during a partially drawn or colored state resets all stroke offsets, fill opacity, drawing cursor, loop time, and interaction impulses.
 - The pen/cursor follows the active path and disappears when drawing ends.
 - Loop boundaries do not visibly jump unless the design calls for a snap.
 - Replay resets every dependent state, not only elapsed time.
@@ -34,7 +46,7 @@
 - Small details improve recognition or expression and do not turn into clutter at delivery size.
 - Line weights, caps, joins, fills, and accent colors are coherent.
 - The environment remains neutral unless the brief requires otherwise.
-- One identifying subject region carries the default accent; the entire subject or scene is not colored accidentally.
+- One identifying subject region carries the default accent unless the selected palette or explicit monochrome request specifies otherwise; the entire subject or scene is not colored accidentally.
 - The accent usually covers about 20%–40% of the subject and related effects reuse it only when meaningful.
 - The accent follows the subject's construction and retains readable outline contrast.
 - Background layers are quieter than the subject and communicate depth through weight, opacity, density, scale, or motion speed.
